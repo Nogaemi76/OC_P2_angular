@@ -42,6 +42,7 @@ export class DetailComponent implements OnInit, OnDestroy {
     this.olympics$ = this.olympicService.getOlympics();
 
     const countryId = +this.route.snapshot.params['id'];
+
     //console.log('countryId', countryId);
 
     this.subscription = this.olympics$
@@ -97,17 +98,44 @@ export class DetailComponent implements OnInit, OnDestroy {
         data: this.numberOfMedalsArr,
         fill: false,
         borderColor: this.countryColor,
-        tension: 0.1
+        tension: 0,
       }],
-
     };
 
     this.chartOptions = {
       plugins: {
-          legend: {
-              display: false,
-          }
-      }
+        tooltip: {
+          backgroundColor: '#04838F',
+          displayColors: false,
+          bodyFont: {
+            family: 'Yorkten Thin',
+            size: 14
+          },
+          titleFont: {
+            family: 'Yorkten Thin',
+            size: 14
+          },
+          bodyAlign: 'center',
+          titleAlign: 'center',
+          caretSize: 10,
+          yAlign: 'bottom',
+        },
+        legend: {
+            display: false,
+        },
+      },
+      layout: {
+        autoPadding: false,
+        padding: {
+          top: 60
+        }
+      },
+      // scales: {
+      //     y: {
+      //         suggestedMin: 20,
+      //         suggestedMax: 150
+      //     },
+      // }
     }
   }
 
