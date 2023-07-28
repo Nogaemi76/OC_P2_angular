@@ -1,8 +1,11 @@
-.center {
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+h1, h2 {
+  font-family: 'Yorkten Medium';
+}
+
+h2 {
+  font-size: 50px;
+}
+
+#img-error {
+  width: 400px
 }

@@ -1,3 +1,27 @@
-#pie_container {
+.pie-container {
   width: 40%;
+}
+
+@media only screen and (max-width: 1200px) {
+  .pie-container {
+    width: 50%;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .pie-container {
+    width: 60%;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .pie-container {
+    width: 80%;
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  .pie-container {
+      width: 90%;
+    }
 }

@@ -1,8 +1,33 @@
-<h2>Olympic games app</h2>
-<hr />
-<p>{{ (olympics$ | async)?.length }} data loaded</p>
-
-<div id="pie_container">
-  <p-chart type="pie" [data]="data" [options]="chartOptions"></p-chart>
+<div *ngIf="olympicsData == null || olympicsData == undefined" class="center-page-simple text-red">
+  <h2>Olympic games app is not available for the moment</h2>
+  <p>Some error occurred. Please refresh the page</p>
 </div>
 
+<div *ngIf="olympicsData && olympicsData.length !== 0">
+  <div class="center-page-elements">
+    <section>
+      <div class="flex justify-center">
+        <h1 class="title-box">Medals per country</h1>
+      </div>
+      <div>
+        <div class="flex justify-center">
+          <div class="text-box box-mr">
+            <h3>Number of JOs</h3>
+            <h3>{{ numberOfJOs }}</h3>
+          </div>
+          <div class="text-box box-ml">
+            <h3>Number of countries</h3>
+            <h3>{{ (olympics$ | async)?.length }}</h3>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section>
+      <div>
+        <div class="pie-container margin-center">
+          <p-chart type="pie" [data]="data" [options]="chartOptions"></p-chart>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

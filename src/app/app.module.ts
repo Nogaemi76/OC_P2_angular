@@ -7,9 +7,10 @@ import { HomeComponent } from './pages/home/home.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 import { ChartModule } from 'primeng/chart';
+import { DetailComponent } from './pages/detail/detail.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, NotFoundComponent],
+  declarations: [AppComponent, HomeComponent, NotFoundComponent, DetailComponent],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, ChartModule],
   providers: [],
   bootstrap: [AppComponent],

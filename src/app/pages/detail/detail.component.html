@@ -1,0 +1,52 @@
+<div *ngIf="(olympics$ | async)?.length === 0" class="center-page-simple text-red">
+  <h2>This page is not available for the moment</h2>
+  <p>Some error occured.</p>
+  <div class="flex justify-center pb-20">
+    <div class="home-button flex">
+      <div>
+        <img src="assets/images/home.png" alt="icon_home">
+      </div>
+      <a class="decoration-none text-greenblue" routerLink="">Back to Home Page</a>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="(olympics$ | async)?.length !== 0" class="center-page-elements">
+  <section>
+    <div class="flex justify-center">
+      <h1 class="title-box">{{ countryName }}</h1>
+    </div>
+    <div>
+      <div class="flex justify-center direction-box">
+        <div class="text-box box-mr">
+          <h3>Number of Entries</h3>
+          <h3>{{ numberOfparticipations }}</h3>
+        </div>
+        <div class="text-box box-mr box-ml">
+          <h3>Total number of medals</h3>
+          <h3>{{ totalNumberOfMedals }}</h3>
+        </div>
+        <div class="text-box box-ml">
+          <h3>Total number of athletes</h3>
+          <h3>{{ totalNumberOfAthletes }}</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section>
+    <div class="line-container margin-center">
+        <p-chart type="line" [data]="data" [options]="chartOptions"></p-chart>
+    </div>
+    <div class="text-center pt-20 pb-20">
+      <span class="size-22">Dates</span>
+    </div>
+    <div class="flex justify-center pb-20">
+      <div class="home-button flex">
+        <div>
+          <img src="assets/images/home.png" alt="icon_home">
+        </div>
+        <a class="decoration-none text-greenblue" routerLink="">Back to Home Page</a>
+      </div>
+    </div>
+  </section>
+</div>
