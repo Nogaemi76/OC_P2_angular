@@ -5,9 +5,11 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ## Getting Started
 
 Clone the project from the repository
+
 `$ git clone https://github.com/Nogaemi76/OC_P2_angular.git`
 
 Install the node_modules before starting
+
 `$ npm install`
 
 ## Development server
@@ -21,22 +23,24 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 ## Libraries
 
 Chart.js - JavaScript charting library
+
 PrimeNG - Open source native Angular UI components
 
 ## Project Description
 
 This project displays informations about the previous olympic games.
 
-It contains 2 main pages (Home and Detail) and a third NotFound page
+It contains 2 main pages (Home and Detail) and a third NotFound page:
 - page Home: displays a pie chart with Medals per country
 - page Detail: displays a line chart with Number of Medals by year for one country
 - page NotFound: page 404 with BackHome button
 
-Additional Info included in pages
+Additional Info included in pages:
 - page Home: Number of JOs, Number of countries
 - page Detail: Number of Entries, Total number of medals, Total number of athletes
 
 Navigation from Home Page to Detail Page is done by click on slice of each country
+
 Navigation from Detail Page to Home Page is done by click on BackHome button
 
 ## Authors
@@ -83,9 +87,10 @@ SOFTWARE.
 All icons are from [Flaticon](https://www.flaticon.com) with Flaticon license
 (Free for personal and commercial use with attribution)
 
-![home icon](./src/assets/images/home.png)
 <a  href="https://www.flaticon.com/free-icons/home"  title="home icons">Home icons created by Aswell Studio - Flaticon</a>
 
+![home icon](./src/assets/images/home.png)
 
-![404 error icon](./src/assets/images/404-error.png)
 <a  href="https://www.flaticon.com/free-icons/404-error"  title="404 error icons">404 error icons created by Ghozi Muhtarom - Flaticon</a>
+
+![404 error icon](./src/assets/images/404-error.png=60)
