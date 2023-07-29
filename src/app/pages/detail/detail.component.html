@@ -1,17 +1,4 @@
-<div *ngIf="(olympics$ | async)?.length === 0" class="center-page-simple text-red">
-  <h2>This page is not available for the moment</h2>
-  <p>Some error occured.</p>
-  <div class="flex justify-center pb-20">
-    <div class="home-button flex">
-      <div>
-        <img src="assets/images/home.png" alt="icon_home">
-      </div>
-      <a class="decoration-none text-greenblue" routerLink="" routerLinkActiveOptions="{ exact: true }">Back to Home Page</a>
-    </div>
-  </div>
-</div>
-
-<div *ngIf="(olympics$ | async)?.length !== 0" class="center-page-elements">
+<div class="center-page-elements">
   <section>
     <div class="flex justify-center">
       <h1 class="title-box">{{ countryName }}</h1>
@@ -35,7 +22,7 @@
   </section>
   <section>
     <div class="line-container margin-center">
-        <p-chart type="line" [data]="data" [options]="chartOptions"></p-chart>
+      <p-chart type="line" [data]="data" [options]="chartOptions"></p-chart>
     </div>
     <div class="text-center pt-20 pb-20">
       <span class="size-22">Number of Medals by Dates</span>
@@ -45,7 +32,8 @@
         <div>
           <img src="assets/images/home.png" alt="icon_home">
         </div>
-        <a class="decoration-none text-greenblue" routerLink="" routerLinkActiveOptions="{ exact: true }">Back to Home Page</a>
+        <a class="decoration-none text-greenblue" routerLink="" routerLinkActiveOptions="{ exact: true }">Back to Home
+          Page</a>
       </div>
     </div>
   </section>

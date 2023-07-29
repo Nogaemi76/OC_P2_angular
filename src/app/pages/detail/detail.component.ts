@@ -16,17 +16,18 @@ export class DetailComponent implements OnInit, OnDestroy {
   public olympics$: Observable<OlympicCountry[]> = of([]);
   subscription!: Subscription;
 
-  countryData!: any;
+  countryId!: number;
+  countryData: OlympicCountry[] = [];
   countryName!: string;
   countryColor!: string;
 
-  numberOfparticipations!: number;
   participations!: Participation[];
+  numberOfparticipations!: number;
   participationYearsArr!: number[];
 
-  totalNumberOfAthletes!: number;
   totalNumberOfMedals!: number;
   numberOfMedalsArr!: number[];
+  totalNumberOfAthletes!: number;
 
   // Line chart variables
   data: any;
@@ -40,66 +41,56 @@ export class DetailComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.olympics$ = this.olympicService.getOlympics();
-
-    const countryId = +this.route.snapshot.params['id'];
-
-    //console.log('countryId', countryId);
+    this.countryId = +this.route.snapshot.params['id'];
 
     this.subscription = this.olympics$
       .pipe(map(element => {
-        this.countryData = element.filter(element => element.id === countryId);
+        this.countryData = element.filter(element => element.id === this.countryId);
       }))
       .subscribe();
 
-    //console.log('countryData', this.countryData);
-
-    if (this.countryData) {
-      console.log('this.countryData', this.countryData);
+    if (this.countryData.length !== 0) {
 
       this.countryName = this.countryData[0].country;
+      this.countryColor = this.getCountryColor(this.countryName);
+
       this.participations = this.countryData[0].participations;
       this.numberOfparticipations = this.countryData[0].participations.length;
 
-      this.totalNumberOfMedals = this.participations.map((a: { medalsCount: number; }) => a.medalsCount)
-              .reduce((a:number, b:number)=> a + b,0);
+      this.participationYearsArr = this.participations
+        .map((participation: Participation) => {
+          return participation.year;
+        });
 
-      //console.log('this.totalNumberOfMedals', this.totalNumberOfMedals);
-
-      this.totalNumberOfAthletes = this.participations.map((a: { athleteCount: number; }) => a.athleteCount)
-              .reduce((a:number, b:number)=> a + b,0);
+      this.totalNumberOfMedals = this.sumOfNumbersInArr(this.participations
+        .map((a: { medalsCount: number; }) => a.medalsCount));
 
       this.numberOfMedalsArr = this.participations
-            .map((participation: Participation) => {
-              return participation.medalsCount;
-            });
-      //console.log('numberOfMedalsArr', this.numberOfMedalsArr);
+        .map((participation: Participation) => {
+          return participation.medalsCount;
+        });
 
-      this.participationYearsArr = this.participations
-            .map((participation: Participation) => {
-              return participation.year;
-            });
-      //console.log('participationYearsArr', this.participationYearsArr);
+      this.totalNumberOfAthletes = this.sumOfNumbersInArr(this.participations
+        .map((a: { athleteCount: number; }) => a.athleteCount));
 
-      this.countryColor = this.getCountryColor(this.countryName);
-      //console.log('this.countryColor', this.countryColor);
-
-    }
-    else {
+    } else {
       this.router.navigate(['**']);
     }
 
     // Line Chart
     const labels = this.participationYearsArr;
+    const chartData = this.numberOfMedalsArr;
+    const borderColor = this.countryColor
 
     this.data = {
       labels: labels,
       datasets: [{
+        data: chartData,
         label: '',
-        data: this.numberOfMedalsArr,
         fill: false,
-        borderColor: this.countryColor,
+        borderColor: borderColor,
         tension: 0,
-      }],
+      }]
     };
 
     this.chartOptions = {
@@ -143,7 +134,6 @@ export class DetailComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
-
   getCountryColor(country: string) {
     switch(country) {
       case 'Italy':
@@ -159,6 +149,10 @@ export class DetailComponent implements OnInit, OnDestroy {
       default:
         return '#04838F'
     }
+  }
+
+  sumOfNumbersInArr(array: any) {
+    return array.reduce((a:number, b:number)=> a + b,0);
   }
 
 }
