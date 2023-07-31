@@ -1,5 +1,5 @@
-<div *ngIf="olympicsData == null || olympicsData == undefined" class="center-page-simple text-red">
-  <h2>Olympic games app is not available for the moment</h2>
+<div *ngIf="(olympics$ | async)?.length === 0" class="center-page-simple text-red">
+  <h2>Olympic games app is not available at the moment</h2>
   <p>Some error occurred. Please refresh the page</p>
 </div>
 
