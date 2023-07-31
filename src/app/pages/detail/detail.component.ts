@@ -37,61 +37,64 @@ export class DetailComponent implements OnInit, OnDestroy {
     private olympicService: OlympicService,
     private router: Router,
     private route: ActivatedRoute
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.olympics$ = this.olympicService.getOlympics();
+
     this.countryId = +this.route.snapshot.params['id'];
 
-    this.subscription = this.olympics$
-      .pipe(map(element => {
-        this.countryData = element.filter(element => element.id === this.countryId);
-      }))
-      .subscribe();
+    this.subscription = this.olympics$.pipe(map(element => {
+      this.countryData = element.filter(element => element.id === this.countryId);
 
-    if (this.countryData.length !== 0) {
+      if (this.countryData.length !== 0) {
 
-      this.countryName = this.countryData[0].country;
-      this.countryColor = this.getCountryColor(this.countryName);
+        this.countryName = this.countryData[0].country;
+        this.countryColor = this.getCountryColor(this.countryName);
 
-      this.participations = this.countryData[0].participations;
-      this.numberOfparticipations = this.countryData[0].participations.length;
+        this.participations = this.countryData[0].participations;
+        this.numberOfparticipations = this.countryData[0].participations.length;
 
-      this.participationYearsArr = this.participations
-        .map((participation: Participation) => {
-          return participation.year;
-        });
+        this.participationYearsArr = this.participations
+          .map((participation: Participation) => {
+            return participation.year;
+          });
 
-      this.totalNumberOfMedals = this.sumOfNumbersInArr(this.participations
-        .map((a: { medalsCount: number; }) => a.medalsCount));
+        this.totalNumberOfMedals = this.sumOfNumbersInArr(this.participations
+          .map((a: { medalsCount: number; }) => a.medalsCount));
 
-      this.numberOfMedalsArr = this.participations
-        .map((participation: Participation) => {
-          return participation.medalsCount;
-        });
+        this.numberOfMedalsArr = this.participations
+          .map((participation: Participation) => {
+            return participation.medalsCount;
+          });
 
-      this.totalNumberOfAthletes = this.sumOfNumbersInArr(this.participations
-        .map((a: { athleteCount: number; }) => a.athleteCount));
+        this.totalNumberOfAthletes = this.sumOfNumbersInArr(this.participations
+          .map((a: { athleteCount: number; }) => a.athleteCount));
 
-    } else {
-      this.router.navigate(['**']);
-    }
+      } else {
+        this.router.navigate(['**']);
+      }
 
-    // Line Chart
-    const labels = this.participationYearsArr;
-    const chartData = this.numberOfMedalsArr;
-    const borderColor = this.countryColor
+      // Line Chart Data
+      const labels = this.participationYearsArr;
+      const chartData = this.numberOfMedalsArr;
+      const borderColor = this.countryColor;
 
-    this.data = {
-      labels: labels,
-      datasets: [{
-        data: chartData,
-        label: '',
-        fill: false,
-        borderColor: borderColor,
-        tension: 0,
-      }]
-    };
+      this.data = {
+        labels: labels,
+        datasets: [{
+          data: chartData,
+          label: '',
+          fill: false,
+          borderColor: borderColor,
+          tension: 0.1,
+        }]
+      };
+
+    })).subscribe();
+
+
+    // Line Chart Options
 
     this.chartOptions = {
       plugins: {
