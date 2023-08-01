@@ -9,3 +9,17 @@ h2 {
 #img-error {
   width: 400px
 }
+
+@media only screen and (max-width: 768px) {
+  h1 {
+    font-size: 30px;
+  }
+
+  h2 {
+    font-size: 40px;
+  }
+
+  #img-error {
+      width: 200px
+    }
+}
