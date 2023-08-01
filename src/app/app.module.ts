@@ -8,8 +8,8 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 import { ChartModule } from 'primeng/chart';
 import { DetailComponent } from './pages/detail/detail.component';
-import { PieChartComponent } from './core/shared/pie-chart/pie-chart.component';
-import { LineChartComponent } from './core/shared/line-chart/line-chart.component';
+import { PieChartComponent } from './core/shared/components/pie-chart/pie-chart.component';
+import { LineChartComponent } from './core/shared/components/line-chart/line-chart.component';
 
 @NgModule({
   declarations: [

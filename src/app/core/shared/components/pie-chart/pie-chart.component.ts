@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { OlympicCountry } from '../../models/OlympicCountry';
+import { OlympicCountry } from '../../../models/OlympicCountry';
 
 @Component({
   selector: 'app-pie-chart',
