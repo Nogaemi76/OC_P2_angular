@@ -21,9 +21,11 @@
     </div>
   </section>
   <section>
-    <div class="line-container margin-center">
-      <p-chart type="line" [data]="data" [options]="chartOptions"></p-chart>
-    </div>
+    <app-line-chart [participationYearsArr]="participationYearsArr"
+                    [numberOfMedalsArr]="numberOfMedalsArr"
+                    [countryColor]="countryColor">
+    </app-line-chart>
+
     <div class="text-center pt-20 pb-20">
       <span class="size-22">Number of Medals by Dates</span>
     </div>

@@ -29,10 +29,6 @@ export class DetailComponent implements OnInit, OnDestroy {
   numberOfMedalsArr!: number[];
   totalNumberOfAthletes!: number;
 
-  // Line chart variables
-  data: any;
-  chartOptions: any;
-
   constructor(
     private olympicService: OlympicService,
     private router: Router,
@@ -75,62 +71,8 @@ export class DetailComponent implements OnInit, OnDestroy {
         this.router.navigate(['**']);
       }
 
-      // Line Chart Data
-      const labels = this.participationYearsArr;
-      const chartData = this.numberOfMedalsArr;
-      const borderColor = this.countryColor;
-
-      this.data = {
-        labels: labels,
-        datasets: [{
-          data: chartData,
-          label: '',
-          fill: false,
-          borderColor: borderColor,
-          tension: 0.1,
-        }]
-      };
-
     })).subscribe();
 
-
-    // Line Chart Options
-
-    this.chartOptions = {
-      plugins: {
-        tooltip: {
-          backgroundColor: '#04838F',
-          displayColors: false,
-          bodyFont: {
-            family: 'Yorkten Thin',
-            size: 14
-          },
-          titleFont: {
-            family: 'Yorkten Thin',
-            size: 14
-          },
-          bodyAlign: 'center',
-          titleAlign: 'center',
-          caretSize: 10,
-          yAlign: 'bottom',
-        },
-        legend: {
-            display: false,
-        },
-      },
-      layout: {
-        autoPadding: false,
-        padding: {
-          top: 60
-        }
-      },
-      // scales: {
-      //     y: {
-      //         suggestedMin: 20,
-      //         suggestedMax: 150
-      //     },
-      // }
-    }
   }
 
   ngOnDestroy(): void {
