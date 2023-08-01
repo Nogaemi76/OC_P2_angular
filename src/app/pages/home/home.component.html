@@ -23,11 +23,10 @@
       </div>
     </section>
     <section>
-      <div>
-        <div class="pie-container margin-center">
-          <p-chart type="pie" [data]="data" [options]="chartOptions"></p-chart>
-        </div>
-      </div>
+      <app-pie-chart  [olympicsData]="olympicsData"
+                      [countryNames]="countryNames"
+                      [medalsArray]="medalsArray">
+      </app-pie-chart>
     </section>
   </div>
 </div>

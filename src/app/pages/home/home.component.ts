@@ -23,10 +23,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   clickedCountry: string = '';
   idClickedCountry!: number | undefined;
 
-  // Pie chart variables
-  data: any;
-  chartOptions: any;
-
   constructor(
     private olympicService: OlympicService,
     private router: Router
@@ -61,56 +57,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.router.navigate(['**']);
       }
 
-      // Pie Chart Data
-        const labels = this.countryNames;
-        const chartData = this.medalsArray;
-
-        this.data = {
-          labels: labels,
-          datasets: [{
-              data: chartData,
-              backgroundColor: ["#956065", "#793D52", "#89A1DB", "#9780A1", "#BFE0F1"],
-              borderWidth: 0
-          }]
-        };
-
     })).subscribe();
-
-
-    // Pie Chart Options
-
-    this.chartOptions = {
-          plugins: {
-            tooltip: {
-              backgroundColor: '#04838F',
-              displayColors: false,
-              bodyFont: {
-                family: 'Yorkten Thin',
-                size: 14
-              },
-              titleFont: {
-                family: 'Yorkten Thin',
-                size: 14
-              },
-              bodyAlign: 'center',
-              titleAlign: 'center',
-              caretSize: 10,
-              yAlign: 'bottom',
-            },
-            legend: {
-              position: 'bottom',
-            }
-          },
-          onClick: (e: any) => {
-
-            this.clickedCountry = e.chart.tooltip.title[0];
-
-            this.idClickedCountry = this.olympicsData
-              .find(element => element.country === this.clickedCountry)?.id;
-
-            this.router.navigateByUrl(`detail/${this.idClickedCountry}`);
-          }
-    };
 
   }
 

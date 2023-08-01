@@ -8,9 +8,10 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 import { ChartModule } from 'primeng/chart';
 import { DetailComponent } from './pages/detail/detail.component';
+import { PieChartComponent } from './core/shared/pie-chart/pie-chart.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, NotFoundComponent, DetailComponent],
+  declarations: [AppComponent, HomeComponent, NotFoundComponent, DetailComponent, PieChartComponent],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, ChartModule],
   providers: [],
   bootstrap: [AppComponent],
